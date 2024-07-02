@@ -57,7 +57,7 @@ const ArticleForm = ({ setpastsearch }) => {
 
     const handleWordClick = async (word, sentence) => {
 
-        let sentenceToSend = sentence.replace(word, `[${word}]`);
+        let sentenceToSend = sentence.replace(word, `[${word}]`) + '.';
 
         console.log(sentenceToSend);
         
