@@ -3,6 +3,7 @@
 import { Textarea } from "@/components/ui/textarea";
 import { useRef, useState } from "react";
 import { ScrollArea } from "./ui/scroll-area";
+import { Button } from "./ui/button";
 
 const ArticleForm = ({ setpastsearch }) => {
 
@@ -82,17 +83,20 @@ const ArticleForm = ({ setpastsearch }) => {
     return (
         <>
             {!hasUserSubmit ? 
-                <form className="flex items-center gap-1.5 sm:left-4 lg:left-10" onSubmit={handleSubmit} ref={formRef}>
-                    <Textarea 
-                        className="min-h-[75vh] w-[70vh] overflow-hidden" 
-                        ref={textareaRef} 
-                        label="Article"
-                        placeholder={`Type in or post the article which contains the word you are interested in. \n\nEnter to Submit \nShift+Enter to new line`}
-                        value={artcle}
-                        onChange={e => setArticle(e.target.value)}
-                        onKeyDown={handleKeyDown} 
-                    />
-                </form>   
+                <div className="flex flex-col">
+                    <form className="flex items-center gap-1.5 sm:left-4 lg:left-10" onSubmit={handleSubmit} ref={formRef}>
+                        <Textarea 
+                            className="min-h-[80vh] w-[70vh] overflow-hidden" 
+                            ref={textareaRef} 
+                            label="Article"
+                            placeholder={`Type in or post the article which contains the word you are interested in. \n\nEnter to Submit \nShift+Enter to new line`}
+                            value={artcle}
+                            onChange={e => setArticle(e.target.value)}
+                            onKeyDown={handleKeyDown} 
+                        />
+                    </form>
+                    <Button onClick={() => setHasUserSubmit(true)}>Submit</Button>
+                </div>   
                 : 
                 <div className="flex flex-col">
                     <ScrollArea className="bg-neutral-300 min-h-[80vh] w-[70vh] p-5 rounded-lg">
@@ -123,7 +127,7 @@ const ArticleForm = ({ setpastsearch }) => {
                             )
                         }               
                     </ScrollArea>
-                    <button onClick={() => setHasUserSubmit(true)}>Submit</button>
+                    <Button onClick={() => setHasUserSubmit(false)}>Reset</Button>
                 </div>
             }
         </>
