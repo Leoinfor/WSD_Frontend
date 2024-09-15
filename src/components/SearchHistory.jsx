@@ -15,9 +15,9 @@ const SearchHistory = ({ pastsearch }) => {
     return (
         <ScrollArea className="flex flex-col gap-6 h-[80vh] overflow-hidden">
             {pastsearch.length > 0 && (
-                pastsearch.toReversed().map((pastsearchItem) => {
+                pastsearch.toReversed().map((pastsearchItem, index) => {
                     return (
-                        <div className="flex flex-col items-center bg-gray-100 rounded-xl px-5 py-12 mt-3 gap-2">
+                        <div key={`${pastsearchItem} ${index}`} className="flex flex-col items-center bg-gray-100 rounded-xl px-5 py-12 mt-3 gap-2">
                             <div className="flex gap-2 items-center">
                                 <button onClick={() => handleSpeak(pastsearchItem['sentence'])}><FontAwesomeIcon icon={faPlayCircle} /></button>
                                 <p className="text-xl font-medium">{pastsearchItem['sentence']}</p>

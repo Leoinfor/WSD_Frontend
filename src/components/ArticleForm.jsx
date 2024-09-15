@@ -42,7 +42,7 @@ const ArticleForm = ({ setpastsearch }) => {
             }
         }
         setParagraphArray(tmpParagraphArray);
-        console.log(paragraphArray);
+        console.log(`abc ${paragraphArray}`);
     }
     
     const handleKeyDown = (event) => {
@@ -95,26 +95,26 @@ const ArticleForm = ({ setpastsearch }) => {
                             onKeyDown={handleKeyDown} 
                         />
                     </form>
-                    <Button onClick={() => setHasUserSubmit(true)}>Submit</Button>
+                    <Button onClick={handleSubmit}>Submit</Button>
                 </div>   
                 : 
                 <div className="flex flex-col">
-                    <ScrollArea className="bg-neutral-300 min-h-[80vh] w-[70vh] p-5 rounded-lg">
+                    <ScrollArea className="bg-neutral-300 h-[80vh] w-[70vh] p-5 rounded-lg">
                         {paragraphArray.length > 0 && (
-                                paragraphArray.map((paragraph) => {
+                                paragraphArray.map((paragraph, idx) => {
                                     return (
-                                        <p className="my-5">
+                                        <p key={idx} className="my-5">
                                             {paragraph.map((sentence) => {
                                                 let [fullSentence] = sentence.slice(-1);
                                                 let wordArray = sentence.slice(0, -1);
                                                 return (
                                                     <>
-                                                        {wordArray.map((word) => {
+                                                        {wordArray.map((word, jdx) => {
                                                             return (
-                                                                <>
+                                                                <span key={jdx}>
                                                                     <span> </span>
                                                                     <a className="hover:underline hover:decoration-red-500 cursor-pointer" onClick={() => {handleWordClick(word, fullSentence)}}> {word}</a>
-                                                                </>
+                                                                </span>
                                                             );
                                                         })}
                                                         <span>.</span>
